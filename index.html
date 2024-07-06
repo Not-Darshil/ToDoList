@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>To Do List</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/favicon-16x16.png">
+    <link rel="manifest" href="/favicon_io/site.webmanifest">
+</head>
+
+<body class="p-0 m-0">
+    <header class="container-fluid">
+        <h1 class="text-center m-0">To Do List</h1>
+    </header>
+
+    <div class="container-fluid text-center p-0 vh-100">
+        <div class="row g-0 h-100">
+            <aside class="aside col-sm-2">
+
+                <div class="progress-card container-fluid">
+                    <h3 class="text-start">Progress</h3>
+                    <h1 class="text-start" id="ProgressDigit"></h1>
+                    <h2 class="text-start" id="ProgressBarMessage"></h2>
+                    <div class="progress-container">
+                        <div class="progress-bar" id="progress-bar"></div>
+                    </div>
+
+                </div>
+                
+                <div class="time-card container-fluid">
+                    <!-- day -->
+                    <h3 class="text-start mt-2 mb-0" id="time-card-day"></h3>
+                    <h1 class="text-start" id="time-card-date"></h1>
+                    <h6 class="text-start" id="time-card-progress"></h6>
+                </div>
+                
+                <div class="delete-all">
+                    <button type="button" class="ClearButton btn btn-danger m-0" onclick="clearTasks()">Clear All</button>
+                </div>
+
+            </aside>
+
+
+            <main class="main col-sm-10">
+
+                <div class="top m-3">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" id="taskInput" maxlength="110"
+                            placeholder="Add a new task..." aria-label="Add a new task..."
+                            aria-describedby="button-addon2">
+                        <button class="btn btn-outline-secondary" type="button" onclick="addTask()" id="button-addon2">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+
+                </div>
+
+
+                <div class="mid m-0">
+                    <p class="container-fluid label">Remaining Tasks</p>
+                    <div class="cards" id="taskList">
+                        <!-- cards will appear here -->
+
+                    </div>
+
+                </div>
+
+
+                <div class="bottom">
+                    <p class="container-fluid label">Completed Tasks</p>
+                    <div class="completed-cards cards" id="completedTaskList">
+                        <!-- completed cards will appear here -->
+                    </div>
+                </div>
+
+
+            </main>
+        </div>
+    </div>
+
+    <footer class=" fixed-bottom ">
+        <h6 class="text-center" href="https://not-darshil.netlify.app/">
+            Designed by <a href="https://not-darshil.netlify.app/"> not.darshil</a>
+        </h6>
+    </footer>
+
+    
+
+    <script>
+        // Function to load tasks from local storage
+        function loadTasks() {
+            const taskList = document.getElementById('taskList');
+            const completedTaskList = document.getElementById('completedTaskList');
+            // because in local storage everything is stores in form of string 
+            const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+            const completedTasks = JSON.parse(localStorage.getItem('completedTasks')) || [];
+
+            tasks.forEach(task => {
+                const li = createTaskCard(task);
+                taskList.appendChild(li);
+            });
+
+            completedTasks.forEach(task => {
+                const li = createTaskCard(task, true);
+                completedTaskList.appendChild(li);
+            });
+
+            updateProgress();
+            updateTime();
+        }
+
+        // Function to create a task card
+        function createTaskCard(task, isCompleted = false) {
+            const li = document.createElement('div');
+            li.className = 'card';
+            li.innerHTML = `
+                <div class="left">
+                    <div class="circle-icon" onclick="${isCompleted ? 'removeTask(this)' : 'completeTask(this)'}">
+                        <i class="fas ${isCompleted ? 'fa-trash' : 'fa-check'}"></i>
+                    </div>
+                </div>
+                <div class="right">
+                    <p class='text-start'>${task}</p>
+                </div>
+            `;
+            if (isCompleted) {
+                li.classList.add('completed');
+            }
+            return li;
+        }
+
+        // Function to save tasks to local storage
+        function saveTasks() {
+            const taskList = document.getElementById('taskList');
+            const completedTaskList = document.getElementById('completedTaskList');
+            const tasks = [];
+            const completedTasks = [];
+
+            taskList.querySelectorAll('.card').forEach(card => {
+                tasks.push(card.querySelector('.right p').textContent);
+            });
+
+            completedTaskList.querySelectorAll('.card').forEach(card => {
+                completedTasks.push(card.querySelector('.right p').textContent);
+            });
+
+            localStorage.setItem('tasks', JSON.stringify(tasks));
+            localStorage.setItem('completedTasks', JSON.stringify(completedTasks));
+        }
+
+        // Function to add a new task
+        function addTask() {
+            const taskInput = document.getElementById('taskInput');
+            const taskList = document.getElementById('taskList');
+
+            if (taskInput.value === '') {
+                alert('Please enter a task');
+                return;
+            }
+
+            const li = createTaskCard(taskInput.value);
+            taskList.appendChild(li);
+            taskInput.value = '';
+
+            saveTasks();
+            updateProgress();
+        }
+
+        // Function to mark a task as complete
+        function completeTask(button) {
+            const li = button.parentElement.parentElement;
+            const taskList = document.getElementById('taskList');
+            const completedTaskList = document.getElementById('completedTaskList');
+
+            li.classList.add('completed');
+            li.querySelector('.circle-icon').onclick = () => removeTask(button);
+            li.querySelector('.circle-icon i').classList.replace('fa-check', 'fa-trash');
+            taskList.removeChild(li);
+            completedTaskList.appendChild(li);
+
+            saveTasks();
+            updateProgress();
+        }
+
+        // Function to remove a completed task
+        function removeTask(button) {
+            const li = button.parentElement.parentElement;
+            const completedTaskList = document.getElementById('completedTaskList');
+            completedTaskList.removeChild(li);
+
+            saveTasks();
+            updateProgress();
+        }
+
+        //Function to update the progress bar
+        function updateProgress() {
+            const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+            const completedTasks = JSON.parse(localStorage.getItem('completedTasks')) || [];
+
+            let ProgressDigit = document.getElementById('ProgressDigit');
+            let progressBar = document.getElementById('progress-bar');
+            let ProgressBarMessage = document.getElementById('ProgressBarMessage');
+            let width = 0;
+            let message;
+            let ProgressPrecentage = 0;
+
+            if (completedTasks.length === 0 && tasks.length === 0) {
+                width = 0;
+                ProgressPrecentage = 0;
+                message = "You can start anytime,\n just begin!";
+            }
+            
+            else {
+                const progress = completedTasks.length / (completedTasks.length + tasks.length);
+                width = progress * 100;
+                ProgressPrecentage = progress * 100;
+                if (ProgressPrecentage === 100) {
+                    message = "You did it! \n All tasks completed!";
+                } else if (ProgressPrecentage >= 76) {
+                    message = "Victory is within your reach!";
+                } else if (ProgressPrecentage >= 51) {
+                    message = "Keep going, almost there now!";
+                } else if (ProgressPrecentage >= 26) {
+                    message = "Progress is steady, keep it up!";
+                } else {
+                    message = "You've got this,  keep pushing!";
+                }
+                
+
+            }
+            progressBar.style.width = width + '%';
+            ProgressDigit.innerHTML = parseInt(ProgressPrecentage) + '%';
+            ProgressBarMessage.textContent = message;
+
+
+            let timeCardProgress=document.getElementById('time-card-progress');
+            if (completedTasks.length === 0 && tasks.length === 0) {
+                timeCardProgress.innerText='Plan your day \n Add a task to begin!'
+            }
+            else{
+                let tasks_length=tasks.length;
+                let completedTasks_length=completedTasks.length;
+                let total_length=tasks_length+completedTasks_length;
+                timeCardProgress.innerText=completedTasks_length+'/'+total_length+'  Tasks done';
+
+            }
+        }
+
+        function updateTime() {
+            const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+            const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+            let date = document.getElementById('time-card-date');
+            let day = document.getElementById('time-card-day');
+            let today = new Date();
+            let today_day = days[today.getDay()];
+            let today_month = months[today.getMonth()];
+            let today_date= today.getDate();
+            let formatted_date = today_month.slice(0,3) + ' '+today_date;
+            date.innerText = formatted_date;
+            day.innerText = today_day;
+        }
+
+        // Function to clear all tasks
+        function clearTasks() {
+            const taskList = document.getElementById('taskList');
+            const completedTaskList = document.getElementById('completedTaskList');
+            taskList.innerHTML = '';
+            completedTaskList.innerHTML = '';
+
+
+            localStorage.setItem('tasks', JSON.stringify([]));
+            localStorage.setItem('completedTasks', JSON.stringify([]));
+            loadTasks();
+            updateProgressBar();
+        }
+
+        // Load tasks when the page loads
+        window.onload = loadTasks;
+    </script>
+
+
+
+</body>
+
+</html>
