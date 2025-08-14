@@ -1,0 +1,688 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+:root {
+    --orange:#FF7517;
+    --grey: #3E3939;
+    --white: #F6F4F4;
+    --black: #2C2727; 
+    --solidblack: #000000; 
+}
+
+body {
+    overflow-x: hidden;
+}
+
+header{
+    background-color: var(--orange);
+    color: var(--white);
+}
+header h1{
+    padding:5px;
+    font-weight: 600;  
+    font-family:"Poppins" ;
+ 
+}
+
+.aside{
+    background-color: var(--white);
+}
+
+.progress-card{
+    background-color: var(--black);
+    padding: 1.5rem;
+    height: 17rem;
+    width: 15rem;
+    border-radius: 1.8rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    
+}
+
+.progress-card:hover {
+    background-color: var(--orange);
+    color: var(--black);
+}
+
+.progress-card h3{
+    color: var(--orange);
+    font-size: 1rem;
+    font-weight: 700;
+    font-family:"Poppins" ;
+}
+.progress-card:hover h3 {
+    color: var(--black);
+}
+
+.progress-card h1{
+    color: var(--white);
+    font-size: 5rem;
+    font-weight: 700;
+    font-family:"Poppins" ;
+}
+.progress-card:hover h1 {
+    color: var(--white);
+}
+
+.progress-card h2{
+    color: var(--orange);
+    font-size: 1rem;
+    font-weight: 600;
+    font-family:"Poppins";
+    
+}
+
+.progress-card:hover h2 {
+    color: var(--black);
+}
+
+
+.progress-container {
+    width: 100%;
+    background-color: var(--grey);
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 20px 0;
+}
+
+.progress-card:hover .progress-container {
+    background-color: var(--white);
+}
+
+
+.progress-bar {
+    height: 30px;
+    width: 0%;
+    background-color: var(--orange);
+    border-radius: 10px;
+    transition: width 1.5s ease-in-out;
+}
+
+.progress-card:hover .progress-bar {
+    background-color: var(--grey);
+}
+
+.time-card{
+    background-color: var(--black);
+    padding: 1.5rem;
+    height: 17rem;
+    width: 15rem;
+    border-radius: 1.8rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+.time-card:hover{
+    background-color: var(--orange);
+    h3{
+        color: var(--grey);
+    }
+    h1{
+        color: var(--white);
+    }
+    h6{
+        color: var(--grey);
+    }
+}
+
+
+
+.time-card h3{
+    color: var(--orange);
+    font-size: 1rem;
+    font-family:"Poppins" ;
+    font-weight: 900;
+}
+.time-card h1{
+    color: var(--white);
+    font-weight: 900;
+    margin-top: 0.7rem;
+    font-family:"Poppins" ;
+}
+.time-card h6{
+    color: var(--orange);
+    font-weight: 900;
+    margin-top: 50%;
+    font-family:"Poppins" ;
+}
+
+.ClearButton{
+    margin: 1rem auto;
+    width: 15rem;
+    font-weight: 700;
+    font-family:"Poppins" ;
+}
+
+.main{
+    padding-left: 0%;
+    padding-right: 0%;
+    margin-left: 0%;
+    margin-right: 0%;
+    background-color: var(--white);
+}
+
+.taskInput{
+
+    font-weight: 700;
+}
+
+#button-addon2{
+    background-color: var(--grey);
+}
+#button-addon2:hover{
+    color: var(--orange);
+}
+
+.circle-icon {
+    width: 40px;
+    height: 40px;
+    border: 2px solid #000;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    background-color: #000;
+    color: var(--orange);
+    
+}
+.circle-icon:hover {
+    color: var(--solidblack);
+    background-color: var(--orange);
+}
+
+.row {
+    flex-wrap: nowrap;
+}
+
+.cards{
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.card{
+    background-color: var(--grey) ;
+    padding: 1rem;
+    margin: 1rem;
+    display: flex;
+    flex-direction: row;
+    height: 10rem;
+    width: 25%;
+    border-radius: 2rem;
+    gap:1rem;
+
+}
+.left{
+    width:10%;
+    margin-right: 0.25rem ;
+}
+.right{
+    width:80%;
+}
+
+.card p{
+    color: var(--orange);
+    font-size: 1rem;
+    font-weight: 400;
+    font-family:"Poppins" ;
+    
+}
+.label{
+    background-color: var(--grey);
+    color: var(--white);
+    font-family:"Poppins" ;
+    font-size: 1.5rem;
+    border-radius: 10px;
+    width:97%;
+}
+footer{
+    background-color: var(--orange);
+    color: var(--white);
+    font-family:"Poppins" ;
+}
+
+
+
+@media (max-width: 1440px) and (min-width: 1024px)  {
+    .aside{
+        width: 25vw;
+    }
+    .main{
+        width: 75vw;
+    }
+    .progress-card{
+        padding: 1.5rem;
+        height: 15rem;
+        width: 14rem;
+        border-radius: 1.25rem;
+    }
+    .progress-card h3{
+        font-size: 1.2rem;
+        font-weight: 700;
+        margin-top: 0rem;
+        margin-bottom: 0rem;
+    }
+    .progress-card h1{
+        font-size: 3.5rem;
+        font-weight: 700;
+        margin-top: 1rem;
+        margin-bottom: 0rem;
+    }
+    .progress-card h2{
+        font-size: 1rem;
+        font-weight: 600;
+        margin-top: 0.25rem;
+        margin-bottom: 0rem;
+    }
+    .progress-container {
+        width: 100%;
+        border-radius: 10px;
+        margin-top: 1rem;
+        margin-bottom: 0rem;
+    }
+    header h1{
+        padding:5px;
+        font-weight: 900;  
+        font-size: 2.5rem;
+    }
+    
+    .time-card{
+        padding: 1.5rem;
+        height: 15rem;
+        width: 14rem;
+        border-radius: 1.25rem;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    }
+    
+    .time-card h3{
+        font-size: 1.2rem;
+        font-weight: 900;
+        margin-top: 0rem;
+        margin-bottom: 0rem;
+    }
+    .time-card h1{
+        font-size: 2.5rem;
+        font-weight: 900;
+        margin-top: 0.25rem;
+        margin-bottom: 0rem;
+    }
+    .time-card h6{
+        font-size: 1rem;
+        font-weight: 900;
+        margin-top: 50%;
+    }
+
+    
+    .label{
+        font-size: 1.2rem;
+        margin-top: 0rem;
+        margin-bottom: 1.5rem;
+        width:97%;
+    }
+    .cards{
+        padding: 0;
+        margin: 0;
+    }
+    .card{
+        padding: 0.9rem;
+        margin: 0.85rem;
+        height: 11rem;
+        width: 28%;
+        border-radius: 1.25rem;
+        gap:1rem;
+    
+    }
+    .left{
+        width:10%;
+        margin-right: 0.75rem ;
+    }
+    .right{
+        width:80%;
+    }
+    
+    .card p{
+        margin-right: 0.75rem ;
+        font-size: 0.88rem;        
+    }
+
+}
+@media (max-width: 1024px) and (min-width: 768px)  {
+    .aside{
+        width: 27vw;
+    }
+    .main{
+        width: 73vw;
+    }
+    .progress-card{
+        padding: 1.2rem;
+        height: 16rem;
+        width: 12rem;
+        border-radius: 1.25rem;
+    }
+    .progress-card h3{
+        font-size: 1.2rem;
+        font-weight: 700;
+        margin-top: 0.25rem;
+        margin-bottom: 0rem;
+    }
+    .progress-card h1{
+        font-size: 4rem;
+        font-weight: 700;
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+    .progress-card h2{
+        font-size: 1rem;
+        font-weight: 600;
+        margin-top: 0.25rem;
+        margin-bottom: 1.25rem;
+    }
+    .progress-container {
+        width: 100%;
+        border-radius: 10px;
+        margin-top: 0rem;
+        margin-bottom: 1rem;
+    }
+    
+    header h1{
+        padding:5px;
+        font-weight: 900;  
+        font-size: 2.5rem;
+    }
+    
+    .time-card{
+        padding: 1.5rem;
+        height: 16rem;
+        width: 12rem;
+        border-radius: 1.25rem;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    }
+    
+    .time-card h3{
+        font-size: 1.2rem;
+        font-weight: 900;
+        margin-top: 0rem;
+        margin-bottom: 0rem;
+    }
+    .time-card h1{
+        font-size: 3rem;
+        font-weight: 900;
+        margin-top: 0.25rem;
+        margin-bottom: 6rem;
+    }
+    .time-card h6{
+        font-size: 1rem;
+        font-weight: 900;
+        margin-top: 50%;
+    }
+    .ClearButton{
+        margin: 1rem auto;
+        width: 12rem;
+        font-weight: 500;
+        font-family:"Poppins" ;
+    }
+    .top{
+        margin: 0.8rem;
+        width: 96%;
+    }
+    
+    .label{
+        font-size: 1.2rem;
+        margin-top: 0rem;
+        margin-bottom: 1.5rem;
+        width:95%;
+        padding:0.6rem;
+    }
+    .cards{
+        padding: 0;
+        margin: 0;
+    }
+    .card{
+        padding: 0.9rem;
+        margin: 0.85rem;
+        height: 13rem;
+        width: 14rem;
+        border-radius: 1.25rem;
+        gap:1rem;
+    
+    }
+    .left{
+        width:10%;
+        margin-right: 0.75rem ;
+    }
+    .right{
+        width:80%;
+    }
+    
+    .card p{
+        margin-right: 0.75rem ;
+        font-size: 0.95rem;        
+    }
+
+}
+@media (max-width: 767px) and (min-width: 425px)  {
+    .aside{
+        width: 100vw;
+    }
+    .main{
+        width: 100vw;
+    }
+    .progress-card{
+        padding: 1.2rem;
+        height: 12rem;
+        width: 22rem;
+        border-radius: 1.25rem;
+    }
+    .progress-card h3{
+        font-size: 1rem;
+        font-weight: 700;
+        margin-top: 0rem;
+        margin-bottom: 0rem;
+    }
+    .progress-card h1{
+        font-size: 3rem;
+        font-weight: 900;
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+    .progress-card h2{
+        font-size: 0.8rem;
+        font-weight: 600;
+        margin-top: 0.25rem;
+        margin-bottom: 1rem;
+    }
+    .progress-container {
+        width: 100%;
+        border-radius: 10px;
+        margin-top: 0rem;
+        margin-bottom: 1rem;
+    }
+    
+    header h1{
+        padding:0px;
+        font-weight: 900;  
+        font-size: 2.5rem;
+    }
+    
+    .time-card{
+        padding: 1.2rem;
+        height: 12rem;
+        width: 22rem;
+        border-radius: 1.25rem;
+    }
+    
+    .time-card h3{
+        font-size: 1rem;
+        font-weight: 900;
+        margin-top: 0rem;
+        margin-bottom: 0rem;
+    }
+    .time-card h1{
+        font-size: 3rem;
+        font-weight: 900;
+        margin-top: 0.25rem;
+        margin-bottom: 1.8rem;
+    }
+    .time-card h6{
+        font-size: 1rem;
+        font-weight: 900;
+        margin-top:1.8rem;
+        margin-bottom: 1rem;
+    }
+    .ClearButton{
+        width: 22rem;
+        border-radius: 0.5rem;
+        font-weight: 500;
+        font-family:"Poppins" ;
+    }
+    .label{
+        font-size: 1.2rem;
+        margin-top: 1.25rem;
+        margin-bottom: 1rem;
+        width:97%;
+        padding:0.3rem;
+    }
+    .cards{
+        padding: 0;
+        margin: 0;
+    }
+    .card{
+        padding: 1rem;
+        margin: 0.4rem;
+        height: 14.75rem;
+        width: 10.75rem;
+        border-radius: 1.25rem;
+    
+    }
+    .left{
+        width:10%;
+        margin-right: 1rem ;
+    }
+    .right{
+        width:80%;
+    }
+    
+    .card p{
+        margin-right: 0.75rem ;
+        font-size: 0.85rem;        
+    }
+    .top{
+        margin: 0rem;
+        width: 96%;
+    }
+}
+@media (max-width: 424px) and (min-width: 320px)  {
+    .aside{
+        width: 100vw;
+    }
+    .main{
+        width: 100vw;
+    }
+    .progress-card{
+        padding: 1rem;
+        height: 10rem;
+        width: 18rem;
+        border-radius: 1.25rem;
+    }
+    .progress-card h3{
+        font-size: 0.8rem;
+        font-weight: 700;
+        margin-top: 0rem;
+        margin-bottom: 0rem;
+    }
+    .progress-card h1{
+        font-size: 2.25rem;
+        font-weight: 900;
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+    .progress-card h2{
+        font-size: 0.7rem;
+        font-weight: 600;
+        margin-top: 0.25rem;
+        margin-bottom: 0.7rem;
+    }
+    .progress-container {
+        width: 100%;
+        border-radius: 10px;
+        margin-top: 0rem;
+        margin-bottom: 1rem;
+    }
+    
+    header h1{
+        padding:0px;
+        font-weight: 900;  
+        font-size: 2rem;
+    }
+    
+    .time-card{
+        padding: 1rem;
+        height: 10rem;
+        width: 18rem;
+        border-radius: 1.25rem;
+    }
+    
+    .time-card h3{
+        font-size: 0.8rem;
+        font-weight: 900;
+        margin-top: 0rem;
+        margin-bottom: 0rem;
+    }
+    .time-card h1{
+        font-size: 2.5rem;
+        font-weight: 900;
+        margin-top: 0.25rem;
+        margin-bottom: 1.8rem;
+    }
+    .time-card h6{
+        font-size: 0.8rem;
+        font-weight: 900;
+        margin-top:2rem;
+        margin-bottom: 1rem;
+    }
+    .ClearButton{
+        margin: 1rem auto;
+        width: 18rem;
+        border-radius: 0.5rem;
+        font-weight: 500;
+        font-family:"Poppins" ;
+    }
+    .label{
+        font-size: 1.2rem;
+        margin-top: 1.25rem;
+        margin-bottom: 1rem;
+        width:92%;
+        padding:0.3rem;
+    }
+    .cards{
+        padding: 0;
+        margin: 0;
+    }
+    .card{
+        padding: 0.75rem;
+        margin: 0.25rem;
+        height: 17rem;
+        width: 9rem;
+        border-radius: 1.25rem;
+    
+    }
+    .left{
+        width:10%;
+        margin-right: 1rem ;
+    }
+    .right{
+        width:80%;
+    }
+    
+    .card p{
+        margin-right: 0.75rem ;
+        font-size: 0.85rem;        
+    }
+    .top{
+        margin: 0.8rem;
+        width: 90%;
+    }
+}
