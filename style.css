@@ -24,6 +24,8 @@ header h1{
 
 .aside{
     background-color: var(--white);
+    height: 100vh;
+    overflow-y: auto; 
 }
 
 .progress-card{
@@ -156,6 +158,8 @@ header h1{
     margin-left: 0%;
     margin-right: 0%;
     background-color: var(--white);
+    height: 100vh;
+    overflow-y: auto;
 }
 
 .taskInput{
